@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+
+    <xs:element name="ranking" type="rankingType"/>
+    <xs:complexType name="rankingType">
+        <xs:sequence>
+            <xs:element name="informacje" type="informacjeType"/>
+            <xs:element name="tabela" type="tabelaType"/>
+            <xs:element name="galeria" type="galeriaType"/>
+            <xs:element name="cennik" type="cennikType"/>
+            <xs:element name="kontakt" type="kontaktType"/>
+            <xs:element name="autor" type="autorType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="informacjeType">
+        <xs:sequence>
+            <xs:element name="komponent" type="komponentType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute ref="id"/>
+    </xs:complexType>
+
+    <xs:complexType name="komponentType">
+        <xs:sequence>
+            <xs:element name="tytul" type="xs:string"/>
+            <xs:element name="tresc">
+                <xs:complexType mixed="true">
+                    <xs:sequence>
+                        <xs:element name="link" type="linkType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="linkType">
+        <xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="source" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="tabelaType">
+        <xs:sequence>
+            <xs:element name="tytul" type="xs:string"/>
+            <xs:element name="rubryka" type="rubrykaType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="rubrykaType">
+        <xs:sequence>
+            <xs:group ref="rubrykaGroup"/>
+        </xs:sequence>
+        <xs:attribute ref="kind"/>
+    </xs:complexType>
+
+    <xs:group name="rubrykaGroup">
+        <xs:sequence>
+            <xs:element name="miejsce" type="miejsceType"/>
+            <xs:element name="nazwa" type="nazwaType"/>
+            <xs:element name="opis" type="opisType"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:simpleType name="opisType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+            <xs:maxLength value="2000"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="nazwaType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+            <xs:maxLength value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="miejsceType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="3"/>
+            <xs:maxLength value="30"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="galeriaType">
+        <xs:sequence>
+            <xs:element name="nazwa" type="xs:string"/>
+            <xs:element ref="zdjecie" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="zdjecie" type="linkType"/>
+
+    <xs:complexType name="cennikType">
+        <xs:sequence>
+            <xs:element name="butelka" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="numer" type="numerType"/>
+                        <xs:element name="cena" type="cenaType"/>
+                        <xs:element name="marka">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:minLength value="1"/>
+                                    <xs:maxLength value="100"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="zrodlo">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:minLength value="1"/>
+                                    <xs:maxLength value="100"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="typ" type="typType"/>
+                        <xs:element name="ocena" type="ocenaType"/>
+                        <xs:element name="kodKreskowy" type="kodKreskowyType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="kodKreskowyType">
+        <xs:restriction base="kodKreskowyLista">
+            <xs:length value="3"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="kodKreskowyLista">
+        <xs:list>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:maxLength value="6"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:list>
+    </xs:simpleType>
+
+    <xs:simpleType name="numerType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="3"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="cenaType">
+        <xs:restriction base="xs:float">
+            <xs:minInclusive value="0.10"/>
+            <xs:maxInclusive value="4.20"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="typType">
+	    <xs:restriction base="xs:token">
+		    <xs:enumeration value="niegazowana" />
+		    <xs:enumeration value="gazowana" />
+	    </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ocenaType">
+        <xs:union memberTypes="litera liczba"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="litera">
+	    <xs:restriction base="xs:string">
+            <xs:pattern value="[A-F]"/>
+	    </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="liczba">
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="[1-6]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="kontaktType">
+        <xs:sequence>
+            <xs:element name="link" type="linkType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="autorType">
+        <xs:sequence>
+            <xs:element name="numerIndeksu" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute ref="imie"/>
+        <xs:attribute ref="nazwisko"/>
+        <xs:attribute ref="wydzial"/>
+    </xs:complexType>
+
+
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="kind" type="xs:string"/>
+    <xs:attribute name="source" type="xs:anyURI"/>
+    <xs:attribute name="imie" type="xs:string"/>
+    <xs:attribute name="nazwisko" type="xs:string"/>
+    <xs:attribute name="wydzial" type="xs:string"/>
+
+</xs:schema>

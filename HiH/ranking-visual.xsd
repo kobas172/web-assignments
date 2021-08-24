@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="ranking">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="informacje">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="komponent">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="tytul" type="xs:string" />
+										<xs:element name="tresc">
+											<xs:complexType mixed="true">
+												<xs:sequence minOccurs="0">
+													<xs:element maxOccurs="unbounded" name="link">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="source" type="xs:string" use="required" />
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="tabela">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="tytul" type="xs:string" />
+							<xs:element maxOccurs="unbounded" name="rubryka">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="miejsce" type="xs:string" />
+										<xs:element name="nazwa" type="xs:string" />
+										<xs:element name="opis" type="xs:string" />
+									</xs:sequence>
+									<xs:attribute name="kind" type="xs:string" use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="galeria">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nazwa" type="xs:string" />
+							<xs:element maxOccurs="unbounded" name="zdjecie">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="source" type="xs:string" use="required" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="cennik">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="butelka">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="numer" type="xs:unsignedByte" />
+										<xs:element name="cena" type="xs:decimal" />
+										<xs:element name="marka" type="xs:string" />
+										<xs:element name="zrodlo" type="xs:string" />
+										<xs:element name="typ" type="xs:string" />
+										<xs:element name="ocena" type="xs:string" />
+										<xs:element name="kodKreskowy" type="xs:string" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="kontakt">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="link">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="source" type="xs:string" use="required" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="autor">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="numerIndeksu" type="xs:unsignedInt" />
+						</xs:sequence>
+						<xs:attribute name="imie" type="xs:string" use="required" />
+						<xs:attribute name="nazwisko" type="xs:string" use="required" />
+						<xs:attribute name="wydzial" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

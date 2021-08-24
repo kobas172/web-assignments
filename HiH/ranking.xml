@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE ranking [
+        <!ATTLIST informacje id CDATA "introdukcja">
+        <!ATTLIST link source CDATA #REQUIRED>
+        <!ATTLIST zdjecie source CDATA #REQUIRED>
+        <!ATTLIST rubryka kind CDATA #IMPLIED>
+        <!ATTLIST autor imie CDATA #REQUIRED>
+        <!ATTLIST autor nazwisko CDATA #REQUIRED>
+        <!ATTLIST autor wydzial (WETI|WEiA) #REQUIRED>
+
+        <!ELEMENT ranking (informacje, tabela, galeria, cennik, kontakt, autor)>
+        <!ELEMENT informacje (komponent+)>
+        <!ELEMENT komponent (tytul|tresc)*>
+        <!ELEMENT tytul (#PCDATA)>
+        <!ELEMENT tresc (#PCDATA|link)*>
+        <!ELEMENT link (#PCDATA)>
+        <!ELEMENT tabela (tytul, (rubryka)+)>
+        <!ELEMENT rubryka (miejsce, nazwa, opis)>
+        <!ELEMENT miejsce (#PCDATA)>
+        <!ELEMENT nazwa (#PCDATA)>
+        <!ELEMENT opis (#PCDATA)>
+        <!ELEMENT galeria (nazwa, (zdjecie)+)>
+        <!ELEMENT zdjecie (#PCDATA)>
+        <!ELEMENT cennik (butelka)+>
+        <!ELEMENT butelka (numer, cena, marka, zrodlo, typ, ocena, kodKreskowy)>
+        <!ELEMENT numer (#PCDATA)>
+        <!ELEMENT cena (#PCDATA)>
+        <!ELEMENT marka (#PCDATA)>
+        <!ELEMENT zrodlo (#PCDATA)>
+        <!ELEMENT typ (#PCDATA)>
+        <!ELEMENT ocena (#PCDATA)>
+        <!ELEMENT kodKreskowy (#PCDATA)>
+        <!ELEMENT kontakt (link)+>
+        <!ELEMENT autor (numerIndeksu)>
+        <!ELEMENT numerIndeksu (#PCDATA)>
+        ]>
+
+<ranking
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="schema.xsd">
+
+
+    <informacje id="introdukcja">
+
+        <komponent>
+            <tytul>Moje trzy ulubione wody!</tytul>
+            <tresc>Informacje tutaj poświęce swoim trzem ulubionym wodą!</tresc>
+        </komponent>
+
+        <komponent>
+            <tytul>Nałęczowianka</tytul>
+            <tresc>Nałęczowianka to król wód, tak jak lew jest królem dżungli, tak jak szczupak jest królem łowiska.</tresc>
+        </komponent>
+
+       
+        <komponent>
+            <tytul>Muszynianka</tytul>
+            <tresc>Ulubiona woda klocucha i Taco Hemingway. "Muszyne rozumiem, ale ***** jakieś Ice Tea?" "Wodniczka skarb życia muszyna."</tresc>
+        </komponent>
+
+        
+        <komponent>
+            <tytul>Mama i Ja</tytul>
+            <tresc>Bardzo delikatny smak tej wody może poruszyć nawet zatwardziałego fana innej wody. Pozycja warta do spróbowania!</tresc>
+        </komponent>
+
+        
+        <komponent>
+            <tytul>Dlaczego warto pić wodę?</tytul>
+            <tresc>
+                <link source="https://www.pacjent.gov.pl/aktualnosc/dlaczego-warto-pic-wode">Korzyści z picica wody!</link>
+                <link source="https://www.youtube.com/watch?v=GEmyyWESkYk">Po co mi woda?</link>
+                <link source="https://aquahome.pl/blog/17-ciekawych-faktow-o-wodzie/">Fakty o wodzie!</link>
+            </tresc>
+        </komponent>
+
+    </informacje>
+
+    <tabela>
+        <tytul>Porównanie najlepsze i najgorszej</tytul>
+        <rubryka kind="naglowek">
+            <miejsce>Miejsce:</miejsce>
+            <nazwa>Nazwa:</nazwa>
+            <opis>Opis:</opis>
+        </rubryka> 
+        <rubryka kind="miejsce">
+            <miejsce>Pierwsze.</miejsce>
+            <nazwa>Nałęczowianka</nazwa>
+            <opis>Skład mineralny Nałęczowianki sprawia, że jest to woda, którą można pić codziennie. Nasza woda nasyca się minerałami podczas 20-letniej podróży przez pokłady skał. Dokładamy wszelkich starań, aby zachować jej pierwotną czystość, którą zawdzięczamy naturalnej ochronie przed zanieczyszczeniami. Dzięki temu, że wodę mineralną czerpiemy ze źródeł podziemnych, możemy mieć pewność, że zawiera tylko naturalną mikroflorę. Jej skład chemiczny jest stabilny i bezpieczny, a zawarte w naszej wodzie minerały korzystnie wpływają na zdrowie.</opis>
+        </rubryka>
+        <rubryka kind="najgorsze">
+            <miejsce>Ostatnie.</miejsce>
+            <nazwa>Cisowianka</nazwa>
+            <opis>Najgorsza woda pitna dostępna w sklepie. Nazywają się liderem w branży co jest większym kłamstwem, niż jakbym powiedział, że 5G smaży mózgi czy Bill Gates chce skontrolować świat swoimi szczepionkami.</opis>
+        </rubryka>
+    </tabela>
+
+    <galeria>
+        <nazwa>Kilka wód wartych polecenia!</nazwa>
+        <zdjecie source="img/1.naleczowianka.jpg">Nałęczowianka</zdjecie>
+        <zdjecie source="img/2.muszynianka.jpg">Muszynianka</zdjecie>
+        <zdjecie source="img/3.mamaija.jpg">Mama i Ja</zdjecie>
+        <zdjecie source="img/4.zywieczdroj.jpg">Żywiec Zdrój</zdjecie>
+        <zdjecie source="img/5.kroplabeskidu.jpg">Kropla Beskidu</zdjecie>
+        <zdjecie source="img/6.dobrowianka.jpg">Dobrowianka</zdjecie>
+        <zdjecie source="img/7.piwniczanka.jpg">Piwniczanka</zdjecie>
+        <zdjecie source="img/8.cisowianka.jpg">Cisowianka</zdjecie>
+    </galeria>
+
+    <cennik>
+        <butelka>
+            <numer>1</numer>
+            <cena>2.43</cena>
+            <marka>Nałęczowianka</marka>
+            <zrodlo>Nałęczowiańskie</zrodlo>
+            <typ>niegazowana</typ>
+            <ocena>A</ocena>
+            <kodKreskowy>5 900635 000022</kodKreskowy>
+        </butelka>
+        <butelka>
+            <numer>2</numer>
+            <cena>2.96</cena>
+            <marka>Muszynianka</marka>
+            <zrodlo>Muszyna</zrodlo>
+            <typ>niegazowana</typ>
+            <ocena>B</ocena>
+            <kodKreskowy>5 900379 137657</kodKreskowy>
+        </butelka>
+        <butelka>
+            <numer>3</numer>
+            <cena>3.50</cena>
+            <marka>Żywiec Zdrój</marka>
+            <zrodlo>Pilsko</zrodlo>
+            <typ>niegazowana</typ>
+            <ocena>C</ocena>
+            <kodKreskowy>5 900541 001021</kodKreskowy>
+        </butelka>
+    </cennik>
+
+    <kontakt>
+        <link source="piotr@testerwodybutelkowej.pl">piotr@testerwodybutelkowej.pl</link>
+        <link source="lubimywode@woda.pl">lubimywode@woda.pl</link>
+    </kontakt>
+
+    <autor imie="Piotr" nazwisko="Górkowski" wydzial="WETI">
+        <numerIndeksu>184515</numerIndeksu>
+    </autor>
+
+</ranking>
